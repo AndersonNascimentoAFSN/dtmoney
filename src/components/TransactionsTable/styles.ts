@@ -26,12 +26,29 @@ export const Container = styled.div`
             color: var(--text-title);
         }
 
-        &.deposit {
+        /* &.deposit {
             color: var(--green);
         }
 
         &.withdraw {
             color: var(--red)
+        } */
+    }
+
+    tr {
+        &.deposit {
+            td {
+                &:nth-child(2) {
+                    color: var(--green);
+                }
+            }
+        }
+        &.withdraw {
+            td {
+                &:nth-child(2) {
+                    color: var(--red);
+                }
+            }
         }
     }
 `;

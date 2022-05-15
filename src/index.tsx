@@ -8,15 +8,23 @@ createServer({
   routes() {
     this.namespace = 'api';
 
-    this.get('/transations', () => {
+    this.get('/transactions', () => {
       return [
         {
           id: 1,
-          title: 'Transations 1',
-          amount: 400,
+          title: 'Desenvolvimento de website',
+          amount: 12000,
           type: 'deposit',
-          category: 'Food',
-          createdAt: new Date(),
+          category: 'Desenvolvimento',
+          createdAt: '15/05/2022',
+        },
+        {
+          id: 2,
+          title: 'Aluguel',
+          amount: -1100,
+          type: 'withdraw',
+          category: 'Casa',
+          createdAt: '20/01/2022',
         }
       ]
     });

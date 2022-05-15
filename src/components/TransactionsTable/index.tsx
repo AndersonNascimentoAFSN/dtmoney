@@ -1,39 +1,38 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { api } from '../../services/api';
 import { Container } from "./styles";
+import { TransactionBody } from "./TransactionBody";
+import { TransactionHead } from "./TransactionHead";
+
+interface transactionsResponse {
+    id: number;
+    title: string,
+    amount: number,
+    type: 'deposit' | 'withdraw',
+    category: string,
+    createdAt: string,
+}
 
 export default function TransitionsTable() {
+    const [transactions, setTransactions] = useState<transactionsResponse[]>([]);
+
     useEffect(() => {
-        api.get('transations')
-            .then((response) => console.log(response.data));
+        api.get('transactions')
+            .then((response) => setTransactions(response.data));
     }, []);
 
     return (
         <Container>
             <table>
-                <thead>
-                    <tr>
-                        <th>Título</th>
-                        <th>Valor</th>
-                        <th>Categoria</th>
-                        <th>Data</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr>
-                        <td>Desenvolvimento de website</td>
-                        <td className="deposit">R$ 12.000</td>
-                        <td>Desenvolvimento</td>
-                        <td>15/05/2022</td>
-                    </tr>
-                    <tr>
-                        <td>Aluguel</td>
-                        <td className="withdraw">- R$ 1.1000</td>
-                        <td>Casa</td>
-                        <td>20/01/2022</td>
-                    </tr>
-                </tbody>
+                <TransactionHead />
+                {
+                    transactions && transactions.map((transaction) => (
+                        <TransactionBody
+                            key={transaction.id}
+                            transaction={transaction}
+                        />
+                    ))
+                }
             </table>
         </Container>
     )
