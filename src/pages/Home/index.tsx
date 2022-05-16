@@ -4,24 +4,24 @@ import Dashboard from "../../components/Dashboard";
 import { NewTransactionModal } from "../../components/NewTransactionModal";
 
 export function Home() {
-    const [isNewTransactionModalOpen, setIsNewTransactionModalOpen] = useState(false);
+  const [isNewTransactionModalOpen, setIsNewTransactionModalOpen] = useState(false);
 
-    function handleOpenNewTransactionModal() {
-        setIsNewTransactionModalOpen(true)
-    }
+  function handleOpenNewTransactionModal() {
+    setIsNewTransactionModalOpen(true)
+  }
 
-    function handleCloseNewTransactionModal() {
-        setIsNewTransactionModalOpen(false)
-    }
+  function handleCloseNewTransactionModal() {
+    setIsNewTransactionModalOpen(false)
+  }
 
-    return (
-        <main>
-            <Header onOpenNewTransactionModal={handleOpenNewTransactionModal} />
-            <Dashboard />
-            <NewTransactionModal
-                isOpen={isNewTransactionModalOpen}
-                onRequestClose={handleCloseNewTransactionModal}
-            />
-        </main>
-    )
+  return (
+    <main>
+      <Header onOpenNewTransactionModal={handleOpenNewTransactionModal} />
+      <Dashboard />
+      <NewTransactionModal
+        isOpen={isNewTransactionModalOpen}
+        onRequestClose={handleCloseNewTransactionModal}
+      />
+    </main>
+  )
 }
