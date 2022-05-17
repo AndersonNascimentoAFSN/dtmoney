@@ -4,7 +4,7 @@ import { TransactionBody } from "./TransactionBody";
 import { TransactionHead } from "./TransactionHead";
 
 export default function TransitionsTable() {
-  const transactions = useTransaction();
+  const { transactions } = useTransaction();
 
   return (
     <Container>
