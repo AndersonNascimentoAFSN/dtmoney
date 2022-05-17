@@ -5,35 +5,35 @@ import { TransactionBody } from "./TransactionBody";
 import { TransactionHead } from "./TransactionHead";
 
 interface transactionsResponse {
-    id: number;
-    title: string,
-    amount: number,
-    type: 'deposit' | 'withdraw',
-    category: string,
-    createdAt: string,
+  id: number;
+  title: string,
+  amount: number,
+  type: 'deposit' | 'withdraw',
+  category: string,
+  createdAt: string,
 }
 
 export default function TransitionsTable() {
-    const [transactions, setTransactions] = useState<transactionsResponse[]>([]);
+  const [transactions, setTransactions] = useState<transactionsResponse[]>([]);
 
-    useEffect(() => {
-        api.get('transactions')
-            .then((response) => setTransactions(response.data));
-    }, []);
+  useEffect(() => {
+    api.get('/transactions')
+      .then((response) => setTransactions(response.data.transactions));
+  }, []);
 
-    return (
-        <Container>
-            <table>
-                <TransactionHead />
-                {
-                    transactions && transactions.map((transaction) => (
-                        <TransactionBody
-                            key={transaction.id}
-                            transaction={transaction}
-                        />
-                    ))
-                }
-            </table>
-        </Container>
-    )
+  return (
+    <Container>
+      <table>
+        <TransactionHead />
+        {
+          transactions && transactions.map((transaction) => (
+            <TransactionBody
+              key={transaction.id}
+              transaction={transaction}
+            />
+          ))
+        }
+      </table>
+    </Container>
+  )
 }
