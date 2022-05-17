@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createServer, Model } from 'miragejs';
 import { App } from './App';
+import { TransactionProvider } from './TransactionsContext'
 import { GlobalStyle } from './styles/global';
 
 createServer({
@@ -51,6 +52,8 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <GlobalStyle />
-    <App />
+    <TransactionProvider>
+      <App />
+    </TransactionProvider>
   </React.StrictMode>
 );
