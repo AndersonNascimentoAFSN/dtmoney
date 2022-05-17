@@ -15,9 +15,16 @@ export function TransactionBody(props: TransactionBodyProps) {
         className={props.transaction.type}
       >
         <td>{props.transaction.title}</td>
-        <td>{`R$ ${props.transaction.amount}`}</td>
+        <td>
+          {new Intl.NumberFormat('pt-BR',
+            { style: 'currency', currency: 'BRL' }
+          ).format(props.transaction.amount)}
+        </td>
         <td>{props.transaction.type}</td>
-        <td>{props.transaction.createdAt}</td>
+        <td>
+          {new Intl.DateTimeFormat('pt-BR')
+            .format(new Date(props.transaction.createdAt))}
+        </td>
       </tr>
     </tbody >
   )
