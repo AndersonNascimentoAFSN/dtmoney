@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createServer, Model } from 'miragejs';
 import { App } from './App';
-import { TransactionProvider } from './TransactionsContext'
+import { TransactionProvider } from './hooks/useTransactions';
 import { GlobalStyle } from './styles/global';
 
 createServer({
@@ -30,7 +30,7 @@ createServer({
           createdAt: new Date('2021-02-17 09:00:00'),
         }
       ]
-    })
+    });
   },
   routes() {
     this.namespace = 'api';
@@ -41,10 +41,10 @@ createServer({
 
     this.post('/transactions', (schema, request) => {
       const data = JSON.parse(request.requestBody);
-      return schema.create('transaction', data);
+      return schema.create('transaction', { ...data, createdAt: new Date() });
     });
   }
-})
+});
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

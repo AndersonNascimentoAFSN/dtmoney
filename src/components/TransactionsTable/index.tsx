@@ -1,10 +1,10 @@
-import { useTransaction } from "../../hooks/useTransaction";
+import { useTransactions } from "../../hooks/useTransactions";
 import { Container } from "./styles";
 import { TransactionBody } from "./TransactionBody";
 import { TransactionHead } from "./TransactionHead";
 
 export default function TransitionsTable() {
-  const { transactions } = useTransaction();
+  const { transactions } = useTransactions();
 
   return (
     <Container>
